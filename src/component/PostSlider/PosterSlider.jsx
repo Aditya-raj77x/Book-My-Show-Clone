@@ -9,7 +9,7 @@ import Poster from '../../Posters/Poster'
 
 
 const PosterSlider = (props) => {
-  const { posters, title, subtitle, isDark } = props
+  const { posters, title, subtitle, isDark ,config} = props
   const settings = {
     infinite:false,
     speed:500,
