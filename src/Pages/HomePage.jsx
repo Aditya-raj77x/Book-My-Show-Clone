@@ -18,15 +18,33 @@ const HomePage = () => {
   const [recomondedMovies, setRecomondedMovies] = useState([]);
   const [premiermovies, setPremierMovies] = useState([]);
   const [onlineStreamEvents, setOnlineStreamEvents] = useState([]);
+//top rated (recomemded movies)
+  useEffect(()=>{
+    const reqPopularMovies=async ()=>{
+      const getPopularMOvies=await axios.get("/movie/popular")
+      setRecomondedMovies(getPopularMOvies.data.results)
+    }
+    reqPopularMovies()
+  },[])
+  // premiermovies/top rated
 
   useEffect(()=>{
-    const reqTopReatedMovies=async ()=>{
-      const getTopRatedMOvies=await axios.get("https://api.themoviedb.org/3/tv/top_rated?api_key=f772fb068378bb02690aed3d5cf48aac")
-      setRecomondedMovies(getTopRatedMOvies.data.results)
+    const reqPremierMovies=async ()=>{
+      const getPremierMOvies=await axios.get("/movie/top_rated")
+      setPremierMovies(getPremierMOvies.data.results)
     }
-    reqTopReatedMovies()
+    reqPremierMovies()
   },[])
-
+// onlineStreamEvents/upcomimg
+  useEffect(()=>{
+    const reqUpcomimgMovies=async ()=>{
+      const getUpcomimgMOvies=await axios.get("/movie/upcoming")
+      setOnlineStreamEvents(getUpcomimgMOvies.data.results)
+    }
+    reqUpcomimgMovies()
+  },[])
+  
+  
   return (
     <>
       <HeroCarousel />
