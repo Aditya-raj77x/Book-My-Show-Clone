@@ -8,14 +8,16 @@ import { MovieContext } from '../context/MovieContext';
 import Slider from "react-slick"
 import { FaCcVisa, FaCcApplePay } from "react-icons/fa"
 import PosterSlider from '../component/PostSlider/PosterSlider';
+import MovieHero from '../component/MovieHero/MovieHero';
 
 const MoviePage = () => {
   const { id } = useParams();
 
   const { movie, setMovie } = useContext(MovieContext);
+  
   const [cast, setCast] = useState([]);
   const [SimilarMovies, setSimilarMovies] = useState([]);
-  const [recomemdedMovies, setRecommendedMovies] = useState([]);
+  const [rc, setRecommendedMovies] = useState([]);
   //getting cast
   useEffect(() => {
     const reqCast = async () => {
@@ -23,7 +25,7 @@ const MoviePage = () => {
       setCast(getCast.data.cast)
     }
     reqCast()
-  }, [id])
+  })
 
   //getting similarMovies
   useEffect(() => {
@@ -44,13 +46,22 @@ const MoviePage = () => {
     };
 
     requestRecommendedMovies();
-  }, [id]);
+  }, [id])
+
+  //getting Movie Data
+  useEffect(()=>{
+    const rqMovie=async()=>{
+      const getMovieData=await axios.get(`/movie/${id}`)
+      setMovie(getMovieData.data)
+    }
+    rqMovie()
+  },[id])
 
   const settingCast = {};
   const settings = {};
   return (
     <>
-      {/* <MovieHero></MovieHero> */}
+      <MovieHero/>
       <div className='my-12 container px-4 lg:ml-20 lg:w-2/3'>
         <div className='flex flex-col gap-3 items-start'>
           <h1 className='text-gray-800 font-bold text-2xl'>
@@ -67,7 +78,7 @@ const MoviePage = () => {
           <h2 className='text-gray-800 font-bold mb-3 text-2xl'>
             Applicable Offers
           </h2>
-          <div className='flex flex-col gap-3 lg:flex-row lg:w-3/3'>
+          <div className='flex flex-col gap-3 lg:flex-row'>
             <div className='flex items-start gap-2 bg-yellow-100 p-3 border-yellow-400 border-dashed border-2 rounded-md'>
               <div className='w-8 h-8'>
                 <FaCcVisa className='w-full h-full' />
@@ -115,7 +126,7 @@ const MoviePage = () => {
           <PosterSlider
             config={settings}
             title="Recommended Movies"
-            posters={recomemdedMovies}
+            posters={rc}
             isDark={false} />
         </div>
 
@@ -127,7 +138,7 @@ const MoviePage = () => {
           <PosterSlider
             config={settings}
             title="BMS XCLUSICE"
-            posters={recomemdedMovies}
+            posters={rc}
             isDark={false} />
         </div>
 

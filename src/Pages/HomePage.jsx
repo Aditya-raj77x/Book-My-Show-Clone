@@ -8,7 +8,7 @@ import PosterSlider from '../component/PostSlider/PosterSlider'
 import DeafultHOC from "../Layouts/Deafult.Layout"
 //axios
 import axios from 'axios'
-import userEvent from '@testing-library/user-event'
+
 
 
 
@@ -38,7 +38,7 @@ const HomePage = () => {
 // onlineStreamEvents/upcomimg
   useEffect(()=>{
     const reqUpcomimgMovies=async ()=>{
-      const getUpcomimgMOvies=await axios.get("/movie/upcoming")
+      const getUpcomimgMOvies=await axios.get("/movie/upcoming");
       setOnlineStreamEvents(getUpcomimgMOvies.data.results)
     }
     reqUpcomimgMovies()
