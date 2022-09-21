@@ -1,20 +1,45 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext } from "react";
 
 export const MovieContext = createContext();
 
 const MovieProvider = ({ children }) => {
-    const [movie,setMovie]=useState({
-        id:0,
-        original_title:"",
-        overview:"",
-        backdrop_path:"",
-        poster_path:"",
-    });
-    return (
-        <MovieContext.Provider value={{movie,setMovie}}>
-            {children}
-        </MovieContext.Provider>
-    )
-}
+  const [movie, setMovie] = useState({
+    id: 0,
+    original_title: "",
+    overview: "",
+    backdrop_path: "",
+    poster_path: "",
+  });
 
-export default MovieProvider
+  const [isOpen, setIsOpen] = useState(false);
+  const [price, setPrice] = useState(0);
+
+  const rentMovie = () => {
+    setIsOpen(true);
+    setPrice(149);
+  };
+
+  const buyMovie = () => {
+    setIsOpen(true);
+    setPrice(599);
+  };
+
+  return (
+    <MovieContext.Provider
+      value={{
+        movie,
+        setMovie,
+        isOpen,
+        setIsOpen,
+        price,
+        setPrice,
+        rentMovie,
+        buyMovie,
+      }}
+    >
+      {children}
+    </MovieContext.Provider>
+  );
+};
+
+export default MovieProvider;

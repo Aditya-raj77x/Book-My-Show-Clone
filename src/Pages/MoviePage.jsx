@@ -9,6 +9,7 @@ import Slider from "react-slick"
 import { FaCcVisa, FaCcApplePay } from "react-icons/fa"
 import PosterSlider from '../component/PostSlider/PosterSlider';
 import MovieHero from '../component/MovieHero/MovieHero';
+import Cast from '../component/Cast/Cast';
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -179,6 +180,20 @@ const MoviePage = () => {
           <hr />
         </div>
         {/* {cast and crew slider} */}
+        <div className="my-8">
+          <h2 className="text-gray-800 font-bold text-2xl mb-4">
+            Cast and Crew
+          </h2>
+          <Slider {...settingCast}>
+            {cast.map((castData) => (
+              <Cast
+                image={castData.profile_path}
+                castName={castData.original_name}
+                role={castData.character}
+              />
+            ))}
+          </Slider>
+        </div>
         <div className='my-8 '>
           <hr />
         </div>
