@@ -3,38 +3,38 @@ import { MovieContext } from '../../context/MovieContext'
 import MovieInfo from './MovieInfo';
 
 const MovieHero = (props) => {
-    const { movie } = useContext(MovieContext);
-    const genres = movie.genres?.map(({ name }) => name).join(",");
+  const { movie, rentMovie, buyMovie } = useContext(MovieContext);
+  const genres = movie.genres?.map(({ name }) => name).join(",");
 
 
-    return (
-        <>
-            <div>
-                {/* mobile and tab sizes */}
-                <div className='lg:hidden w-full'>
-                    <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="Cover Poster"
-                        className='m-4 rounded'
-                        style={{ widht: ("calc(100%-2rem") }} />
-                </div>
-                <div className='flex flex-col gap-3 lg:hidden'>
-                    <div className='flex flex-col-reverse gap-3 px-4 my-3'>
-                        <div className='flex flex-col text-black gap-2 md:px-4'>
-                            <h4> 4K ratinng</h4>
-                            <h4>English , Hindi , Tamil , Telgu</h4>
-                            <h4>{movie.runtime} Min | {genres}</h4>
-                        </div>
-                    </div>
-                    <div className='flex items-center gap-3 md:px-4 md:w-screen text-xl px-4'>
-                        <button className='bg-red-500 w-full py-3 text-white font-semibold rounded-lg'>
-                            Rent ₹149 
-                        </button>
+  return (
+    <>
+      <div>
+        {/* mobile and tab sizes */}
+        <div className='lg:hidden w-full'>
+          <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="Cover Poster"
+            className='m-4 rounded'
+            style={{ widht: ("calc(100%-2rem") }} />
+        </div>
+        <div className='flex flex-col gap-3 lg:hidden'>
+          <div className='flex flex-col-reverse gap-3 px-4 my-3'>
+            <div className='flex flex-col text-black gap-2 md:px-4'>
+              <h4> 4K ratinng</h4>
+              <h4>English , Hindi , Tamil , Telgu</h4>
+              <h4>{movie.runtime} Min | {genres}</h4>
+            </div>
+          </div>
+          <div className='flex items-center gap-3 md:px-4 md:w-screen text-xl px-4'>
+            <button onClick={rentMovie} className='bg-red-500 w-full py-3 text-white font-semibold rounded-lg'>
+              Rent ₹149
+            </button>
 
-                        <button className='bg-red-600 w-full py-3 text-white font-semibold rounded-lg'>
-                            Buy ₹599 
-                        </button>
-                    </div>
-                </div>
-                 {/* Large Screen Device */}
+            <button onClick={buyMovie} className='bg-red-600 w-full py-3 text-white font-semibold rounded-lg'>
+              Buy ₹599
+            </button>
+          </div>
+        </div>
+        {/* Large Screen Device */}
         <div
           className="relative hidden w-full lg:block"
           style={{ height: "30rem" }}
@@ -65,10 +65,10 @@ const MovieHero = (props) => {
             className="w-full h-full object-cover object-center"
           />
         </div>
-            </div>
+      </div>
 
-        </>
-    )
+    </>
+  )
 }
 
 export default MovieHero
