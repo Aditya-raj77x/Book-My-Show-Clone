@@ -18,33 +18,33 @@ const HomePage = () => {
   const [recomondedMovies, setRecomondedMovies] = useState([]);
   const [premiermovies, setPremierMovies] = useState([]);
   const [onlineStreamEvents, setOnlineStreamEvents] = useState([]);
-//top rated (recomemded movies)
-  useEffect(()=>{
-    const reqPopularMovies=async ()=>{
-      const getPopularMOvies=await axios.get("/movie/popular")
+  //top rated (recomemded movies)
+  useEffect(() => {
+    const reqPopularMovies = async () => {
+      const getPopularMOvies = await axios.get("/movie/popular")
       setRecomondedMovies(getPopularMOvies.data.results)
     }
     reqPopularMovies()
-  },[])
+  }, [])
   // premiermovies/top rated
 
-  useEffect(()=>{
-    const reqPremierMovies=async ()=>{
-      const getPremierMOvies=await axios.get("/movie/top_rated")
+  useEffect(() => {
+    const reqPremierMovies = async () => {
+      const getPremierMOvies = await axios.get("/movie/top_rated")
       setPremierMovies(getPremierMOvies.data.results)
     }
     reqPremierMovies()
-  },[])
-// onlineStreamEvents/upcomimg
-  useEffect(()=>{
-    const reqUpcomimgMovies=async ()=>{
-      const getUpcomimgMOvies=await axios.get("/movie/upcoming");
+  }, [])
+  // onlineStreamEvents/upcomimg
+  useEffect(() => {
+    const reqUpcomimgMovies = async () => {
+      const getUpcomimgMOvies = await axios.get("/movie/upcoming");
       setOnlineStreamEvents(getUpcomimgMOvies.data.results)
     }
     reqUpcomimgMovies()
-  },[])
-  
-  
+  }, [])
+
+
   return (
     <>
       <HeroCarousel rec={recomondedMovies} />
@@ -58,27 +58,27 @@ const HomePage = () => {
       <div className='container mx-auto px-4 md:px-12 my-8'>
         <PosterSlider title="Recommended Movies"
           subtitle="List of recommended movies"
-          posters={recomondedMovies} 
-          isDark={false}/>
+          posters={recomondedMovies}
+          isDark={false} />
       </div>
       <div className='bg-premier-800 py-12'>
         <div className='container mx-auto px-4 md:px-12 my-8 flex flex-col gap-3'>
           <div className='hidden md:flex'>
             <img src="https://in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120/premiere-rupay-banner-web-collection-202104230555.png"
-             alt="Rupay" className='w-fill h-full' />
+              alt="Rupay" className='w-fill h-full' />
           </div>
           <PosterSlider title="Premiers"
-          subtitle="Brand New Releases Every Friday"
-          posters={premiermovies} 
-          isDark={true}/>
+            subtitle="Brand New Releases Every Friday"
+            posters={premiermovies}
+            isDark={true} />
 
         </div>
       </div>
       <div className='container mx-auto px-4 md:px-12 my-8'>
-      <PosterSlider title="Online Streaming Events"
+        <PosterSlider title="Online Streaming Events"
           subject=""
-          posters={onlineStreamEvents} 
-          isDark={false}/>
+          posters={onlineStreamEvents}
+          isDark={false} />
       </div>
     </>
   )
