@@ -1,7 +1,7 @@
 
 # Book My Show Clone 
-
-It is a clone of Book ny show website . I have used react to make it and for the DataBase and server I have used MovieDB API .
+Book my show is movies & tv show streaming site where you can rent a movie as well as buy it .
+It is a clone of Book my show website . I have used react to make it and for the DataBase and server I have used MovieDB API .
 
 ## [SEE IT LIVE](https://book-my-show-clone-seven-sand.vercel.app)
 
